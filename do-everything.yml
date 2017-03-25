@@ -1,0 +1,7 @@
+---
+- include: register-hosts.yml
+- include: packages.yml
+- include: freeipa-enroll.yml
+- include: yum-cron.yml
+- include: usersetup.yml
+- include: plex.yml
