@@ -1,0 +1,9 @@
+---
+- name: Activate yum-cron on all hosts
+  hosts: all
+  become_user: root
+  become: yes
+  #vars:
+  #  email_to: root@localhost
+  roles:
+  - jeffwidman.yum-cron

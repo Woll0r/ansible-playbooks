@@ -1,0 +1,12 @@
+---
+- name: Enroll all hosts into FreeIPA
+  hosts: freeipa-clients
+  remote_user: root
+  #vars:
+  #  freeipaclient_server: srv-ipa-01
+  #  freeipaclient_domain: home
+  #  freeipaclient_enroll_user: admin
+  #  freeipaclient_enroll_pass: secrets
+  #  freeipaclient_enable_dns_updates: true
+  roles:
+  - alvaroaleman.freeipa-client

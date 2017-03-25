@@ -1,0 +1,4 @@
+---
+- include: register-hosts.yml
+- include: packages.yml
+- include: freeipa-enroll.yml
