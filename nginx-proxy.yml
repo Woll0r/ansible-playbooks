@@ -13,11 +13,10 @@
       location_list:
         - name: "/"
           proxy_pass: "http://srv-docker-01:8989"
-          proxy_set_header:
-          - "X-Real-IP  $remote_addr"
-          - "Host $host"
-          - "X-Forwarded-For $proxy_add_x_forwarded_for"
-          - "X-Forwarded-Proto $scheme"
+          proxy_set_header: "X-Real-IP  $remote_addr"
+          proxy_set_header: "Host $host"
+          proxy_set_header: "X-Forwarded-For $proxy_add_x_forwarded_for"
+          proxy_set_header: "X-Forwarded-Proto $scheme"
           proxy_redirect: "off"
     - name: "radarr.home.cardboardbox.be"
       delete: False
@@ -27,11 +26,10 @@
       location_list:
         - name: "/"
           proxy_pass: "http://srv-docker-01:7878"
-          proxy_set_header:
-          - "X-Real-IP  $remote_addr"
-          - "Host $host"
-          - "X-Forwarded-For $proxy_add_x_forwarded_for"
-          - "X-Forwarded-Proto $scheme"
+          proxy_set_header: "X-Real-IP  $remote_addr"
+          proxy_set_header: "Host $host"
+          proxy_set_header: "X-Forwarded-For $proxy_add_x_forwarded_for"
+          proxy_set_header: "X-Forwarded-Proto $scheme"
           proxy_redirect: "off"
     - name: "deluge.home.cardboardbox.be"
       delete: False
@@ -41,11 +39,10 @@
       location_list:
         - name: "/"
           proxy_pass: "http://srv-docker-01:8112"
-          proxy_set_header:
-          - "X-Real-IP  $remote_addr"
-          - "Host $host"
-          - "X-Forwarded-For $proxy_add_x_forwarded_for"
-          - "X-Forwarded-Proto $scheme"
+          proxy_set_header: "X-Real-IP  $remote_addr"
+          proxy_set_header: "Host $host"
+          proxy_set_header: "X-Forwarded-For $proxy_add_x_forwarded_for"
+          proxy_set_header: "X-Forwarded-Proto $scheme"
           proxy_redirect: "off"
   roles:
   - jriguera.nginx
