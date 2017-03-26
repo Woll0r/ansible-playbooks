@@ -31,3 +31,13 @@
           proxy_pass: "http://srv-docker-01:8112"
   roles:
   - jriguera.nginx
+  tasks:
+  - name: Open firewall
+    firewalld:
+      service: "{{ item }}"
+      permanent: true
+      immediate: true
+      state: enabled
+    with_items:
+    - http
+    - https

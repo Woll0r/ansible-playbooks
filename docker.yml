@@ -46,11 +46,6 @@
       - "/opt/docker/sonarr:/config"
       - "/mnt/media:/tv"
       - "/mnt/downloads:/downloads"
-  - name: Configure firewalld for Sonarr
-    firewalld:
-      port: 8989/tcp
-      permanent: true
-      state: enabled
   - name: Get Radarr
     docker_container:
       name: radarr
@@ -67,11 +62,6 @@
       - "/opt/docker/radarr:/config"
       - "/mnt/media:/movies"
       - "/mnt/downloads:/downloads"
-  - name: Configure firewalld for Radarr
-    firewalld:
-      port: 7878/tcp
-      permanent: true
-      state: enabled
   - name: Get Deluge
     docker_container:
       name: deluge
@@ -88,8 +78,13 @@
       - "/opt/docker/deluge:/config"
       - "/mnt/downloads:/downloads"
       network_mode: host
-  - name: Configure firewalld for Deluge
+  - name: Configure firewalld
     firewalld:
-      port: 8112/tcp
+      port: "{{ item }}"
       permanent: true
+      immediate: true
       state: enabled
+    with_items:
+    - 8112/tcp
+    - 8989/tcp
+    - 7878/tcp
