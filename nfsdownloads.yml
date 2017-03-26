@@ -1,0 +1,19 @@
+---
+- name: Mount NFS Downloads folder
+  hosts: docker-hosts
+  become_user: root
+  become: yes
+  tasks:
+    - name: Create folder for downloads
+      file:
+        path: /mnt/downloads
+        state: directory
+        mode: 0777
+        owner: root
+        group: root
+    - name: Mount downloads folder
+      mount:
+        path: /mnt/downloads
+        src: 172.16.1.6:/volume1/Downloads
+        state: present
+        fstype: nfs
