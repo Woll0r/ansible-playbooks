@@ -1,0 +1,35 @@
+---
+- name: Mount NFS filesystems
+  become_user: root
+  become: yes
+  tasks:
+    - name: Create folder for media
+      hosts: plex-servers,docker-hosts
+      file:
+        path: /mnt/media
+        state: directory
+        mode: 0777
+        owner: root
+        group: root
+    - name: Create folder for downloads
+      hosts: docker-hosts
+      file:
+        path: /mnt/downloads
+        state: directory
+        mode: 0777
+        owner: root
+        group: root
+    - name: Mount media folder
+      hosts: plex-servers,docker-hosts
+      mount:
+        path: /mnt/media
+        src: 172.16.1.6:/volume1/Media
+        state: present
+        fstype: nfs
+    - name: Mount downloads folder
+      hosts: docker-hosts
+      mount:
+        path: /mnt/downloads
+        src: 172.16.1.6:/volume1/Downloads
+        state: present
+        fstype: nfs

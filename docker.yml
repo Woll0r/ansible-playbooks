@@ -1,0 +1,78 @@
+---
+- name: Get Docker containers
+  hosts: docker-hosts
+  become_user: root
+  become: yes
+  tasks:
+  - name: Get Docker repo
+    get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
+      dest: /etc/yum.repos.d/docker-ce.repo
+  - name: Install Docker packages
+    yum:
+      name: {{ item }}
+      state: present
+    with_items:
+    - docker-ce
+    - python-docker
+  - name: Start Docker
+    systemd:
+      name: docker
+      state: started
+      enabled: true
+  - name: Create folders
+    file:
+      path: /opt/docker/{{ item }}
+      state: directory
+      owner: root
+      group: root
+      mode: 0777
+    with_items:
+    - sonarr
+    - radarr
+    - deluge
+  - name: Get Sonarr
+    docker_container:
+      name: sonarr
+      image: "linuxserver/sonarr"
+      state: started
+      recreate: false
+      env:
+        PUID: 1000
+        PGID: 1000
+      ports:
+      - "8989:8989"
+      volumes:
+      - "/opt/docker/sonarr:/config"
+      - "/mnt/media:/tv"
+      - "/mnt/downloads:/downloads"
+  - name: Get Radarr
+    docker_container:
+      name: radarr
+      image: "linuxserver/radarr"
+      state: started
+      recreate: false
+      env:
+        PUID: 1000
+        PGID: 1000
+        TZ: Europe/Brussels
+      ports:
+      - "7878:7878"
+      volumes:
+      - "/opt/docker/radarr:/config"
+      - "/mnt/media:/movies"
+      - "/mnt/downloads:/downloads"
+  - name: Get Deluge
+    docker_container:
+      name: deluge
+      image: "linuxserver/deluge"
+      state: started
+      recreate: false
+      env:
+        PUID: 1000
+        PGID: 1000
+        TZ: Europe/Brussels
+      volumes:
+      - "/opt/docker/deluge:/config"
+      - "/mnt/downloads:/downloads"
+      network_mode: host

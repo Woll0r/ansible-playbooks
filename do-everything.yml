@@ -4,4 +4,6 @@
 - include: freeipa-enroll.yml
 - include: yum-cron.yml
 - include: usersetup.yml
+- include: nfsmount.yml
 - include: plex.yml
+- include: docker.yml
