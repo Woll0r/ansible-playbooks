@@ -15,5 +15,5 @@
       mount:
         name: /mnt/downloads
         src: 172.16.1.6:/volume1/Downloads
-        state: present
+        state: mounted
         fstype: nfs

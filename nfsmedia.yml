@@ -15,5 +15,5 @@
       mount:
         name: /mnt/media
         src: 172.16.1.6:/volume1/Media
-        state: present
+        state: mounted
         fstype: nfs
