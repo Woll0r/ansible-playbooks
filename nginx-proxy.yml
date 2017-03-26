@@ -1,0 +1,33 @@
+---
+- name: Create reverse proxy for services
+  hosts: reverseproxy-servers
+  become_user: root
+  become: yes
+  vars:
+    nginx_server_list:
+    - name: "sonarr.home.cardboardbox.be"
+      delete: False
+      listen: 
+        - ["80"]
+      access_log: "/var/log/nginx/sonarr_access.log"
+      location_list:
+        - name: "/"
+          proxy_pass: "http://srv-docker-01:8989"
+    - name: "radarr.home.cardboardbox.be"
+      delete: False
+      listen: 
+        - ["80"]
+      access_log: "/var/log/nginx/radarr_access.log"
+      location_list:
+        - name: "/"
+          proxy_pass: "http://srv-docker-01:7878"
+    - name: "deluge.home.cardboardbox.be"
+      delete: False
+      listen: 
+        - ["80"]
+      access_log: "/var/log/nginx/deluge_access.log"
+      location_list:
+        - name: "/"
+          proxy_pass: "http://srv-docker-01:8112"
+  roles:
+  - jriguera.nginx
