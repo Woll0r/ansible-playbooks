@@ -13,7 +13,7 @@
         group: root
     - name: Mount media folder
       mount:
-        path: /mnt/media
+        name: /mnt/media
         src: 172.16.1.6:/volume1/Media
         state: present
         fstype: nfs

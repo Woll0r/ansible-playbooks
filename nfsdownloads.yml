@@ -13,7 +13,7 @@
         group: root
     - name: Mount downloads folder
       mount:
-        path: /mnt/downloads
+        name: /mnt/downloads
         src: 172.16.1.6:/volume1/Downloads
         state: present
         fstype: nfs
