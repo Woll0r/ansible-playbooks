@@ -82,6 +82,8 @@
         PUID: 1000
         PGID: 1000
         TZ: Europe/Brussels
+      ports:
+      - "8112:8112"
       volumes:
       - "/opt/docker/deluge:/config"
       - "/mnt/downloads:/downloads"
