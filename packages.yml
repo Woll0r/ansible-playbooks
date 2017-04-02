@@ -18,3 +18,4 @@
     - deltarpm
     - nfs-utils
     - ipa-admintools
+    - libsemanage-python
