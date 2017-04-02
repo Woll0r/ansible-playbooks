@@ -44,6 +44,32 @@
           proxy_set_header X-Forwarded-For: "$proxy_add_x_forwarded_for"
           proxy_set_header X-Forwarded-Proto: "$scheme"
           proxy_redirect: "off"
+    - name: "jackett.home.cardboardbox.be"
+      delete: False
+      listen: 
+        - ["80"]
+      access_log: "/var/log/nginx/jackett_access.log"
+      location_list:
+        - name: "/"
+          proxy_pass: "http://srv-docker-01:9117"
+          proxy_set_header X-Real-IP: "$remote_addr"
+          proxy_set_header Host: "$host"
+          proxy_set_header X-Forwarded-For: "$proxy_add_x_forwarded_for"
+          proxy_set_header X-Forwarded-Proto: "$scheme"
+          proxy_redirect: "off"
+    - name: "ombi.home.cardboardbox.be"
+      delete: False
+      listen: 
+        - ["80"]
+      access_log: "/var/log/nginx/ombi_access.log"
+      location_list:
+        - name: "/"
+          proxy_pass: "http://srv-docker-01:3579"
+          proxy_set_header X-Real-IP: "$remote_addr"
+          proxy_set_header Host: "$host"
+          proxy_set_header X-Forwarded-For: "$proxy_add_x_forwarded_for"
+          proxy_set_header X-Forwarded-Proto: "$scheme"
+          proxy_redirect: "off"
   roles:
   - jriguera.nginx
   tasks:
