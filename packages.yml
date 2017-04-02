@@ -4,11 +4,18 @@
   remote_user: root
   tasks:
   - name: upgrade all packages
-    yum: name=* state=latest update_cache=yes
+    yum:
+      name: *
+      state: latest
+      update_cache: yes
   - name: install EPEL repo
-    yum: name=epel-release state=installed
+    yum:
+      name: epel-release
+      state: installed
   - name: install other packages
-    yum: name={{ item }} state=installed
+    yum:
+      name: "{{ item }}"
+      state: installed
     with_items:
     - git
     - stow
