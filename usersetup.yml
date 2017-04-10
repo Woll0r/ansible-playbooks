@@ -27,3 +27,4 @@
     shell: stow screen zsh git ssh
     args:
       chdir: ~/dotfiles/
+    when: zshrc.stat.islnk is defined and not zshrc.stat.islnk
