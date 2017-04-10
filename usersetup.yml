@@ -18,7 +18,7 @@
     file:
       path: ~/.zshrc
       state: absent
-    unless: zshrc.stat.islnk is defined and zshrc.stat.islnk
+    when: zshrc.stat.islnk is defined and not zshrc.stat.islnk
   - name: create .ssh directory
     file:
       path: ~/.ssh
