@@ -10,10 +10,15 @@
     shell: git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     args:
       creates: ~/.oh-my-zsh
+  - name: get .zshrc state
+    stat:
+      path: ~/.zshrc
+    register: zshrc
   - name: delete the old .zshrc
     file:
       path: ~/.zshrc
       state: absent
+    unless: zshrc.stat.islnk is defined and zshrc.stat.islnk
   - name: create .ssh directory
     file:
       path: ~/.ssh
