@@ -39,6 +39,7 @@
       image: "linuxserver/sonarr"
       state: started
       recreate: true
+      pull: true
       env:
         PUID: 1000
         PGID: 1000
@@ -54,6 +55,7 @@
       image: "linuxserver/radarr"
       state: started
       recreate: true
+      pull: true
       env:
         PUID: 1000
         PGID: 1000
@@ -70,6 +72,7 @@
       image: "linuxserver/deluge"
       state: started
       recreate: true
+      pull: true
       env:
         PUID: 1000
         PGID: 1000
@@ -86,6 +89,7 @@
       image: "linuxserver/jackett"
       state: started
       recreate: true
+      pull: true
       env:
         PUID: 1000
         PGID: 1000
@@ -101,6 +105,7 @@
       image: "linuxserver/ombi"
       state: started
       recreate: true
+      pull: true
       env:
         PUID: 1000
         PGID: 1000
