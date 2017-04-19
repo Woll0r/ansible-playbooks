@@ -6,7 +6,7 @@
   tasks:
   - name: Install
     yum:
-      name: https://downloads.plex.tv/plex-media-server/1.5.4.3596-0d2d8c2be/plexmediaserver-1.5.4.3596-0d2d8c2be.x86_64.rpm
+      name: https://downloads.plex.tv/plex-media-server/1.5.5.3634-995f1dead/plexmediaserver-1.5.5.3634-995f1dead.x86_64.rpm
       state: present
   - name: Configure firewalld
     firewalld:
